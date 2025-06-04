@@ -13,7 +13,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">
+                <a class="nav-link" href="<?= BASE_URL ?>/index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -28,14 +28,14 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="../backend/category/list.php">
+                <a class="nav-link" href="<?= BASE_URL ?>/category/list.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Categories</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="../backend/category/post.">
+                <a class="nav-link" href="<?= BASE_URL ?>/category/post.">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Posts</span></a>
             </li>
