@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include '../config.php'; ?>
+<?php include '../../dbconnect.php'; ?>
 <head>
 
     <meta charset="utf-8">

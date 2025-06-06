@@ -1,6 +1,6 @@
 <?php define('BASE_URL', '/IT_BLOG/backend'); 
 
- include '../dbconnect.php';
+
 
     //path အပေါ်ကဟာဘဲသုံးသုံး // အောက်ကဟာ URL အပေါ်ကဘဲသုံးသုံး
 

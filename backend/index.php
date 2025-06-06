@@ -1,7 +1,9 @@
+<?php include 'config.php';
+include '../dbconnect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'config.php';
- ?>
+
 <head>
 
     <meta charset="utf-8">
@@ -29,7 +31,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-     <?php include 'sidebar.php'; ?>
+        <?php include 'sidebar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -39,7 +41,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-               <?php include 'navbar.php'; ?>
+                <?php include 'navbar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -55,7 +57,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-           <?php include 'footer.php'; ?>
+            <?php include 'footer.php'; ?>
             <!-- End of Footer -->
 
         </div>

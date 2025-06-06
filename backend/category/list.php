@@ -1,6 +1,10 @@
+<?php 
+include '../config.php'; 
+include '../../dbconnect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include '../config.php'; ?>
+
 <head>
 
     <meta charset="utf-8">
@@ -28,7 +32,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-     <?php include '../sidebar.php'; ?>
+        <?php include '../sidebar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -38,49 +42,41 @@
             <div id="content">
 
                 <!-- Topbar -->
-               <?php include '../navbar.php'; ?>
+                <?php include '../navbar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                   <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h1 class="h3 text-gray-800">Category List Page</h1>
-                        <a href="create.php" class="btn btn-secondary">Add Category</a>
-                    </div>
+                    <h1 class="h3 mb-4 text-gray-800">Category List Page</h1>
+                    <a href="create.php" class="btn btn-primary">Add Category</a>
+                    
                     <table class="table table-bordered table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th>id</th>
-                                <th>name</th>
-                                <th>action</th>
+                                <th>No</th>
+                                <th>Category Name</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                                $stmt = $pdo->query("SELECT * FROM categories ORDER BY id DESC");
+                                $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                // print_r($categories);
+                                $i=1;
+                                foreach ($categories as $category):
+                            ?>
                             <tr>
-                                <td>1</td>
-                                <td>IT</td>
+                                <td><?= $i++; ?></td>  
+                                <td><?= $category['name'] ?></td>
                                 <td>
-                                    <a href="edit.php" class="btn btn-primary">Edit</a>
-                                    <a href="delete.php" class="btn btn-danger">Delete</a>
+                                    <a href="edit.php?id=<?= $category['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="delete.php?id=<?= $category['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>AI</td>
-                                 <td>
-                                    <a href="edit.php" class="btn btn-primary">Edit</a>
-                                    <a href="delete.php" class="btn btn-danger">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Programming</td>
-                                 <td>
-                                    <a href="edit.php" class="btn btn-primary">Edit</a>
-                                    <a href="delete.php" class="btn btn-danger">Delete</a>
-                                </td>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -90,7 +86,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-           <?php include '../footer.php'; ?>
+            <?php include '../footer.php'; ?>
             <!-- End of Footer -->
 
         </div>
