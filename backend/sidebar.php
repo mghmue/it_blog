@@ -35,7 +35,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= BASE_URL ?>/category/post.">
+                <a class="nav-link" href="<?= BASE_URL ?>/category/post/list.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Posts</span></a>
             </li>

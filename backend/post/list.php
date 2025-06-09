@@ -50,32 +50,40 @@ include '../../dbconnect.php';
 
                     <!-- Page Heading -->
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h1 class="h3 mb-4 text-gray-800">Category List Page</h1>
-                        <a href="create.php" class="btn btn-primary">Add Category</a>
+                        <h1 class="h3 mb-4 text-gray-800">Posts List Page</h1>
+
                     </div>
                     
                     <table class="table table-bordered table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>No</th>
-                                <th>Category Name</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Category</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php 
-                                $stmt = $pdo->query("SELECT * FROM categories ORDER BY id DESC");
-                                $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                $stmt = $pdo->query("SELECT * FROM posts ORDER BY id DESC");
+                                $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 // print_r($categories);
                                 $i=1;
-                                foreach ($categories as $category):
+                                foreach ($posts as $post):
                             ?>
                             <tr>
                                 <td><?= $i++; ?></td>  
-                                <td><?= $category['name'] ?></td>
+                                <td><?= $post['title'] ?></td>
+                                <td><?= $post['author_id'] ?></td>
+                                <td><?= $post['category_id'] ?></td>
                                 <td>
-                                    <a href="edit.php?id=<?= $category['id'] ?>" class="btn btn-primary">Edit</a>
-                                    <a href="delete.php?id=<?= $category['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">Delete</a>
+                                    <?= $post['status'] ?>
+                                    <p><? $post['created_at'] ?></p>
+                                </td>
+                                <td>
+                                    <a href="detail.php?id=<?= $post['id'] ?>" class="btn btn-primary">Detail</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

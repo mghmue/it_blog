@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php include '../config.php';
- include '../../dbconnect.php';
 
- if (isset($_SESSION['REQUEST_METHOO']) && $_SESSION['REQUEST_METHOO'] == 'POST') {
-   $name = htmlspecialchars($_POST['catetoryName']);
-   $stmt = $pdo->prepare("INSERT INTO categories (name) VALUES (:name)");
+<?php 
+include '../config.php'; 
+include '../../dbconnect.php';
+
+if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = htmlspecialchars($_POST['categoryName']);
+    $stmt = $pdo->prepare("INSERT INTO categories (name) VALUES (:name)");
     $stmt->execute([
         'name' => $name
     ]);
-    header("Location: list.php");
- }
+    header('Location: list.php');
+}
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -39,7 +42,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-     <?php include '../sidebar.php'; ?>
+        <?php include '../sidebar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -49,32 +52,32 @@
             <div id="content">
 
                 <!-- Topbar -->
-               <?php include '../navbar.php'; ?>
+                <?php include '../navbar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                     <div>
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h1 class="h3 text-gray-800">Category Create Page</h1>
-                            <a href="list.php" class="btn btn-secondary">Back</a>
-                        </div>
-                     </div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h1 class="h3 mb-4 text-gray-800">Category Create Page</h1>
+                        <a href="list.php" class="btn btn-secondary">Back</a>
+                    </div>
                     <form action="#" method="post">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control w-50" id="name" name="atetoryName" placeholder="Enter category name"  required>
-                         </div>
+                        <div class="form-group">  
+                            <label for="name">Category Name</label>
+                            <input type="text" placeholder="Enter Category Name" class="form-control w-50" name="categoryName" id="name" required>
+                        </div>
                         <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
-           <?php include '../footer.php'; ?>
+            <?php include '../footer.php'; ?>
             <!-- End of Footer -->
 
         </div>
