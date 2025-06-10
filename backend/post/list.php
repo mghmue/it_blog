@@ -49,10 +49,7 @@ include '../../dbconnect.php';
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h1 class="h3 mb-4 text-gray-800">Posts List Page</h1>
-
-                    </div>
+                    <h1 class="h3 mb-4 text-gray-800">Post List Page</h1>
                     
                     <table class="table table-bordered table-hover">
                         <thead class="thead-dark">
@@ -69,7 +66,7 @@ include '../../dbconnect.php';
                             <?php 
                                 $stmt = $pdo->query("SELECT * FROM posts ORDER BY id DESC");
                                 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                // print_r($categories);
+                                // print_r($posts);
                                 $i=1;
                                 foreach ($posts as $post):
                             ?>
@@ -79,8 +76,8 @@ include '../../dbconnect.php';
                                 <td><?= $post['author_id'] ?></td>
                                 <td><?= $post['category_id'] ?></td>
                                 <td>
-                                    <?= $post['status'] ?>
-                                    <p><? $post['created_at'] ?></p>
+                                  <?= $post['status'] ?>
+                                  <p><?= $post['created_at'] ?></p>
                                 </td>
                                 <td>
                                     <a href="detail.php?id=<?= $post['id'] ?>" class="btn btn-primary">Detail</a>
