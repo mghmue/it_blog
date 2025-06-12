@@ -1,4 +1,32 @@
-<!DOCTYPE html>
+<?php 
+include '../dbconnect.php';
+
+if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = htmlspecialchars($_POST['userName']);
+    $email = htmlspecialchars($_POST['userEmail']);
+    $password = htmlspecialchars($_POST['userPassword']);
+    $confirmPassword = htmlspecialchars($_POST['userConfirmPassword']);
+
+        echo $name .',' . $email . ',' . $password . ',' . $confirmPassword;
+    if($password !== $confirmPassword) {
+        header('Location: register.php');
+        exit();
+    }else {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $pdo->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
+        $stmt->execute([
+            'name' => $name,
+            'email' => $email,
+            'password' => $hashedPassword
+        ]);
+        header('Location: login.php');
+    }        
+}
+
+?>
+
+<!DOC
+TYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -31,19 +59,19 @@
                     <h3>Register</h3>
                     <form action=""method ="post" class="p-4 p-md-5 border rounded-3 bg-light">
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="floationgInputName"   placeholder="shewu">
+                            <input class="form-control" id="floationgInputName"name="userName" placeholder="shewu" required>
                             <label for="floatingInputName">Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="floatingInput" type="email" placeholder="name@example.com">
+                            <input class="form-control" id="floatingInput" type="email" placeholder="name@example.com" name="userEmail" required>
                             <label for="floatingInput">Email address</label>
                         </div>    
                          <div class="form-floating mb-3">
-                            <input class="form-control" id="floatingInputPassword" type="password" placeholder="Password">
+                            <input class="form-control" id="floatingInputPassword" type="password" placeholder="Password" name="userPassword" required>
                             <label for="floatingPassword">Password</label>
                         </div> 
                          <div class="form-floating mb-3">
-                            <input class="form-control" id="floatingConfirmPassword" type="password" placeholder="ConfirmPassword">
+                            <input class="form-control" id="floatingConfirmPassword" type="password" placeholder="ConfirmPassword" name="userConfirmPassword" required>
                             <label for="floatingConfirmPassword">Confirm Password</label>
                         </div>
                         <div class="d-grid gap-2">

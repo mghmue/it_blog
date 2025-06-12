@@ -1,3 +1,30 @@
+<?php 
+  include '../dbconnect.php';
+
+  if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = htmlspecialchars($_POST['userEmail']);
+    $password = htmlspecialchars($_POST['userPassword']);
+    // echo $email .','. $password;
+
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+    $stmt->execute([
+      'email' => $email
+    ]);
+    $user = $stmt->fetch();
+    // var_dump($user);
+    if ($user) {
+      if (password_verify($password, $user['password'])) {
+        // session_start();
+        // $_SESSION['user'] = $user;
+        header('Location: index.php');
+      } else {
+        header('Location: login.php');
+      }
+    } else {
+      header('Location: login.php');
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,45 +40,31 @@
     </head>
     <body>
         <!-- Responsive navbar-->
-      <?php include 'navbar.php'; ?>
-        <!-- Page header with logo and tagline-->
-        <header class="py-5 bg-light border-bottom mb-4">
-            <div class="container">
-                <div class="text-center my-5">
-                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
-                </div>
-            </div>
-        </header>
+        <?php include 'navbar.php'; ?>
         <!-- Page content-->
-        <div class="container">
-            <div class="row">
+        <div class="container py-5">
+            <div class="row justify-content-md-center">
                 <!-- Blog entries-->
                 <div class="col-lg-6">
-                    <h3>Login</h3>
-                    <form action=""method ="post" class="p-4 p-md-5 border rounded-3 bg-light">
-                       
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="floatingInput" type="email" placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
-                        </div>    
-                         <div class="form-floating mb-3">
-                            <input class="form-control" id="floatingInputPassword" type="password" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
-                        </div> 
-                       
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="submit">Login</button>
-                        </div>
-                        
-                    </form>
+                  <h3>Login</h3>
+                  <form action="#" method="post" class="p-4 p-md-5 border rounded-3 bg-light">
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="userEmail" required>
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="userPassword" required>
+                      <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-primary" type="submit">Login</button>
+                    </div>
+                  </form>
                 </div>
-                <!-- Side widgets-->
-             <?php include 'sidebar.php'; ?>
             </div>
         </div>
         <!-- Footer-->
-       <?php include 'footer.php'; ?>
+        <?php include 'footer.php'; ?>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
