@@ -27,7 +27,10 @@
         <div class="container">
             <div class="row">
                 <!-- Blog entries-->
-               <form action=""method ="post" class="p-4 p-md-5 border rounded-3 bg-light">   
+                <div class="col-lg-6">
+                    <h3>Login</h3>
+                    <form action=""method ="post" class="p-4 p-md-5 border rounded-3 bg-light">
+                       
                         <div class="form-floating mb-3">
                             <input class="form-control" id="floatingInput" type="email" placeholder="name@example.com">
                             <label for="floatingInput">Email address</label>
@@ -36,7 +39,13 @@
                             <input class="form-control" id="floatingInputPassword" type="password" placeholder="Password">
                             <label for="floatingPassword">Password</label>
                         </div> 
+                       
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="submit">Login</button>
+                        </div>
+                        
                     </form>
+                </div>
                 <!-- Side widgets-->
              <?php include 'sidebar.php'; ?>
             </div>
