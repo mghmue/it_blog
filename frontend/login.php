@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Blog Home - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+      <?php include 'navbar.php'; ?>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
+                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                </div>
+            </div>
+        </header>
+        <!-- Page content-->
+        <div class="container">
+            <div class="row">
+                <!-- Blog entries-->
+               <form action=""method ="post" class="p-4 p-md-5 border rounded-3 bg-light">   
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="floatingInput" type="email" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                        </div>    
+                         <div class="form-floating mb-3">
+                            <input class="form-control" id="floatingInputPassword" type="password" placeholder="Password">
+                            <label for="floatingPassword">Password</label>
+                        </div> 
+                    </form>
+                <!-- Side widgets-->
+             <?php include 'sidebar.php'; ?>
+            </div>
+        </div>
+        <!-- Footer-->
+       <?php include 'footer.php'; ?>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
